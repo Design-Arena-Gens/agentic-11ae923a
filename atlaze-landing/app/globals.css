@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #080412;
+  --foreground: #f7f5ff;
+  --surface-elevated: rgba(34, 18, 61, 0.65);
+  --atlaze-indigo: #5e17eb;
+  --atlaze-violet: #6f2fee;
+  --atlaze-iris: #8c57ff;
+  --atlaze-midnight: #05010f;
+  --atlaze-graphite: #141127;
+  --atlaze-sage: #a0f2ff;
+  --font-body: var(--font-body, "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  --font-display: var(--font-display, "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-midnight: var(--atlaze-midnight);
+  --color-indigo: var(--atlaze-indigo);
+  --color-violet: var(--atlaze-violet);
+  --color-iris: var(--atlaze-iris);
+  --color-graphite: var(--atlaze-graphite);
+  --color-sage: var(--atlaze-sage);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(120% 140% at 20% 0%, rgba(111, 47, 238, 0.35), transparent),
+    radial-gradient(90% 100% at 80% 10%, rgba(94, 23, 235, 0.45), transparent),
+    radial-gradient(110% 110% at 50% 80%, rgba(32, 188, 255, 0.25), transparent),
+    var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(94, 23, 235, 0.45);
+  color: var(--foreground);
+}
+
+.noise {
+  position: relative;
+  isolation: isolate;
+}
+
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
